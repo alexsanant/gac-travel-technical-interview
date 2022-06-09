@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products{% endblock %}
+
+{% block body %}
+
+    {% include 'security/logout.html.twig' %}
+
+    <center><h1 class="display-4">Products</h1></center></br>
+
+
+    <div class="buttons" style="margin-bottom:2em">
+        <a href="{{ path('app_category_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Categories') }}</button></a>
+        <a href="{{ path('app_user_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Users') }}</button></a>
+        <a href="{{ path('app_product_new') }}"><button class="btn btn-outline-secondary">New</button></a>
+    
+    </div>
+
+
+
+
+
+    <table class="table table-warning table-hover text-center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Created_at</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}"> <button class="btn btn-outline-info">{{ button_label|default('Show') }}</button></a>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}"> <button class="btn btn-outline-warning">{{ button_label|default('Edit') }}</button></a>
+                    <a href="{{ path('app_product_stock', {'id': product.id}) }}"> <button class="btn btn-outline-success">{{ button_label|default('Edit stock') }}</button></a>
+                    <a href="{{ path('app_stock_historic_index', {'id': product.id}) }}"> <button class="btn btn-outline-secondary">{{ button_label|default('Stock historic') }}</button></a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

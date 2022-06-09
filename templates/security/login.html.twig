@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+<body style="background-color:darkgray">
+    <div class="container align-items-center" style="display:flex; justify-content:center; min-height:100vh;">
+        <div class="row">
+                <div class="card badge text-bg-dark p-3 border border-dark rounded" style="font-size:18px; text-align:left; width:600px; height:600px">
+                    <div class="card-body">
+                        <h1 class="card-title text-center" style="margin-bottom:1.5em">Sign in</h1>
+                            <Form method="post">
+                                <div class="mb-3">
+                                    <!--<label for="aUsername" class="form-label">Username</label>-->
+                                    <input type="text" name="username" value="{{ last_username }}" class="form-control" id="username" placeholder="Username:" autocomplete="username" required autofocus/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <!--<label for="aPassword" class="form-label">Password</label>-->
+                                    <input type="password" name="password" class="form-control" id="aPassword" placeholder="Password:" autocomplete="password" required autofocus/>
+                                
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                </div>
+
+
+
+                                <div class="form-check form-switch" style="margin-top:3em">
+                                    <input class="form-check-input" type="checkbox" name="_remember_me" role="switch" id="flexSwitchCheckDefault">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Remember me</label>
+                                </div>
+
+
+                                <div class="d-grid gap-2" style="margin-top:3em;">
+                                    <button class="btn btn-secondary" type="submit">Log in</button>
+                                </div>
+                            </Form>
+
+                            <div class="d-grid gap-2 col-6 mx-auto" style="margin-top:5em;">
+                                <a href="{{ path('app_register') }}" class="btn btn-outline-light" tabindex="-1" role="button" aria-disabled="true">REGISTER</a>
+                            </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

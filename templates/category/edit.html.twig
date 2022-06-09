@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edi category{% endblock %}
+
+{% block body %}
+    {% include 'security/logout.html.twig' %}
+    
+
+
+    <center><h1 class="display-4">Category management</h1></center></br>
+
+    <div class="btn-group" role="group" style="margin-bottom:2em">
+        <a href="{{ path('app_product_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Categories') }}</button></a>
+        {{ include('category/_delete_form.html.twig') }}
+       
+    </div>
+
+
+    <div class="form-control-lg">
+
+         {{ include('category/_form.html.twig', {'button_label': 'Edit'}) }}
+
+    </div>
+
+
+{% endblock %}

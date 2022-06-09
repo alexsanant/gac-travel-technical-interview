@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+{% if app.user %}
+</br>
+
+<Form method="post" action="{{ path('app_logout', {'id': app.user.id}) }}" onsubmit="return confirm('Are you sure you want to logout?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('logout' ~ app.user.id) }}">
+
+
+<div class="container">
+        
+    <div class="alert alert-primary text-center" role="alert">
+            Welcome {{ app.user.username }}!  <a href="{{ path('app_logout') }}"><button class="btn btn-outline-dark">{{ button_label|default('Logout') }}</button></a>
+    </div>
+</div>
+</Form
+{% endif %}
+
+
+{% endblock %}

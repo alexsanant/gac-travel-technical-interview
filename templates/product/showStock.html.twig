@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock{% endblock %}
+
+{% block body %}
+    {% include 'security/logout.html.twig' %}
+    
+
+
+    <center><h1 class="display-4">Stock management</h1></center></br>
+
+    <div class="btn-group" role="group" style="margin-bottom:2em">
+        <a href="{{ path('app_product_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Products') }}</button></a>
+        
+       
+    </div>
+
+
+    <div class="form-control-lg">
+
+         {{ include('product/_form.html.twig', {'button_label': 'Edit'}) }}
+
+    </div>
+
+
+{% endblock %}
+
+

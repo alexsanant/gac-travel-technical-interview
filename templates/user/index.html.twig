@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+
+
+{% block body %}
+
+{% include 'security/logout.html.twig' %}
+
+
+    <center><h1 class="display-4">Users</h1></center></br>
+
+    <div class="buttons" style="margin-bottom:2em">
+        <a href="{{ path('app_category_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Categories') }}</button></a>
+        <a href="{{ path('app_product_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Products') }}</button></a>
+    </div>
+
+    <table class="table table-info table-hover text-center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Roles</th>
+                <th>Active</th>
+                <th>Created_at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.roles[0]|json_encode() }}</td>
+                <td>{{ user.active }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}"> <button class="btn btn-outline-info">{{ button_label|default('Show') }}</button></a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}"> <button class="btn btn-outline-warning">{{ button_label|default('Edit') }}</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+{% endblock %}

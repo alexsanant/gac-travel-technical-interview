@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+    {% include 'security/logout.html.twig' %}
+
+    <center><h1 class="display-4">User info</h1></center></br>
+
+    <div class="buttons" style="margin-bottom:2em">
+        <div class="buttons" style="margin-bottom:2em">
+        <a href="{{ path('app_user_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Users') }}</button></a>
+        <a href="{{ path('app_user_edit', {'id': user.id} ) }}"><button class="btn btn-outline-warning">{{ button_label|default('Edit') }}</button></a>
+    </div>
+
+    
+
+     <table class="table table-success table-hover text-center">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles[0]|json_encode()}}
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ user.active }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

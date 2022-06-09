@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+
+    {% include 'security/logout.html.twig' %}
+
+
+    <center><h1 class="display-4">Product info</h1></center></br>
+
+    <div class="buttons" style="margin-bottom:2em">
+        <div class="buttons" style="margin-bottom:2em">
+        <a href="{{ path('app_product_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Products') }}</button></a>
+        <a href="{{ path('app_product_edit', {'id': product.id} ) }}"><button class="btn btn-outline-warning">{{ button_label|default('Edit') }}</button></a>
+        
+    </div>
+
+    
+    <table class="table table-success table-hover text-center">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <th>{{ product.category }}</th>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ product.stock }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+{% endblock %}

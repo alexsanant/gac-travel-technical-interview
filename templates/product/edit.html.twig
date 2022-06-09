@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    {% include 'security/logout.html.twig' %}
+    
+
+
+    <center><h1 class="display-4">Product management</h1></center></br>
+
+    <div class="btn-group" role="group" style="margin-bottom:2em">
+        <a href="{{ path('app_product_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Products') }}</button></a>
+        {{ include('product/_delete_form.html.twig') }}
+       
+    </div>
+
+
+    <div class="form-control-lg">
+
+         {{ include('product/_form.html.twig', {'button_label': 'Edit'}) }}
+
+    </div>
+
+
+{% endblock %}

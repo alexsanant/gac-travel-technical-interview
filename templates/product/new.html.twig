@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add product{% endblock %}
+
+{% block body %}
+
+    {% include 'security/logout.html.twig' %}
+    
+    <center><h1 class="display-4">Product register</h1></center></br>
+
+    <Form method="post" onsubmit="return confirm('Product registered succesfully');">
+
+    <div class="btn-group" role="group" style="margin-bottom:2em">
+
+        <a href="{{ path('app_product_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Products') }}</button></a>
+    
+    </div>
+
+ {{ include('product/_form.html.twig') }}
+
+    </Form>
+
+{% endblock %}

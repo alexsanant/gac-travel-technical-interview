@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock historic{% endblock %}
+
+{% block body %}
+
+    {% include 'security/logout.html.twig' %}
+
+
+    <center><h1 class="display-4">Stock historic info</h1></center></br>
+
+    <div class="buttons" style="margin-bottom:2em">
+        <div class="buttons" style="margin-bottom:2em">
+        <a href="{{ path('app_stock_historic_index') }}"><button class="btn btn-outline-secondary">{{ button_label|default('Products') }}</button></a>
+        <a href="{{ path('app_stock_historic_edit', {'id': stock_historic.id} ) }}"><button class="btn btn-outline-warning">{{ button_label|default('Edit') }}</button></a>
+        
+    </div>
+
+    
+    <table class="table table-success table-hover text-center">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stock_historic.id }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ stock_historic.user}}</td>
+            </tr>
+            <tr>
+                <th>Product</th>
+                <td>{{ stock_historic.product }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ stock_historic.createdAt ? stock_historic.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ stock_historic.stock }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+{% endblock %}

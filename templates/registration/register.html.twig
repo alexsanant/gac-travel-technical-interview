@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    
+    <center><h1 class="display-4">User register</h1></center></br>
+
+
+
+    <Form method="post" onsubmit="return confirm('User registered. Please sign in.');">
+
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+
+    <div class="d-grid gap-2">
+        <button class="btn btn-outline-secondary" type="submit">Register</button>
+        <button class="btn btn-outline-info" type="button"><a href="{{ path('app_login') }}">Sign in</a></button>
+    </div>
+
+
+
+
+    {{ form_end(registrationForm) }}
+
+
+{% endblock %}
+
+
+
